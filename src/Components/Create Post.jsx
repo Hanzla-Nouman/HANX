@@ -12,12 +12,6 @@ const CreatePost = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("hi");
-    console.log("User Id:", userIdElement.current.value);
-    console.log("Title:", postTitleElement.current.value);
-    console.log("Body:", postBodyElement.current.value);
-    console.log("Reactions:", postReactionElement.current.value);
-    console.log("Tags:", postTagsElement.current.value);
 
     const userId = userIdElement.current.value;
     const postTitle = postTitleElement.current.value;
