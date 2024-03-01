@@ -11,20 +11,20 @@ import PostListProvider from "./Store/post-list-store";
 const App = () => {
   const [selectedTab, setSelectedTab] = useState("Home");
 
-  
-    return (
-      <PostListProvider>
-        <div className="wholeBody">
-          <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-          <div className="contentBody">
-            <Header />
-            {selectedTab === "Create Post" ? <CreatePost /> : <PostList />}
-            <Footer />
-          </div>
+
+  return (
+    <PostListProvider>
+      <div className="wholeBody">
+        <Sidebar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        <div className="contentBody">
+          <Header />
+          {selectedTab === "Create Post" ? <CreatePost /> : <PostList />}
+          <Footer />
         </div>
-      </PostListProvider>
-    );
-  
+      </div>
+    </PostListProvider>
+  );
+
 };
 
 export default App;
