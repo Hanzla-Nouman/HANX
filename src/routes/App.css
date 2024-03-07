@@ -25,6 +25,7 @@
 }
 .cross{
   font-size: 15px;
+  user-select: none;
 }
 .crossCont{
   cursor: pointer;

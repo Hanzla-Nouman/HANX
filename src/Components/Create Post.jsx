@@ -1,8 +1,10 @@
 import React, { useContext, useRef } from "react";
-import "../App.css";
+import '../routes/App.css'
 import { PostList } from "../Store/post-list-store";
+import { useNavigate } from "react-router-dom";
 
 const CreatePost = () => {
+  const navigate = useNavigate();
   const { addPost } = useContext(PostList);
   const userIdElement = useRef();
   const postTitleElement = useRef();
@@ -18,12 +20,34 @@ const CreatePost = () => {
     const postBody = postBodyElement.current.value;
     const reactions = postReactionElement.current.value;
     const tags = postTagsElement.current.value;
-    addPost(userId, postTitle, postBody, reactions, tags);
+
+    userIdElement.current.value = "";
+    postTitleElement.current.value = "";
+    postBodyElement.current.value = "";
+    postReactionElement.current.value = "";
+    postTagsElement.current.value = "";
+
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: postTitle,
+        body: postBody,
+        reactions: reactions,
+        userId: userId,
+        tags:  tags.split(" "),
+      }),
+    })
+      .then((res) => res.json())
+      .then((post) => {
+        addPost(post);
+        navigate("/");
+      });
   };
   return (
     <>
-      <div className="formParent" >
-        <form className="formCont" onSubmit={handleSubmit} >
+      <div className="formParent">
+        <form className="formCont" onSubmit={handleSubmit}>
           <h1 className=" text-center ">CREATE POST</h1>
           <div className="mb-3 ">
             <label htmlFor="userId" className="form-label">
