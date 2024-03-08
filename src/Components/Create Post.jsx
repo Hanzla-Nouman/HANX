@@ -1,5 +1,5 @@
 import React, { useContext, useRef } from "react";
-import '../routes/App.css'
+import "../routes/App.css";
 import { PostList } from "../Store/post-list-store";
 import { useNavigate } from "react-router-dom";
 
@@ -19,7 +19,7 @@ const CreatePost = () => {
     const postTitle = postTitleElement.current.value;
     const postBody = postBodyElement.current.value;
     const reactions = postReactionElement.current.value;
-    const tags = postTagsElement.current.value;
+    const tags = postTagsElement.current.value.split(" ");
 
     userIdElement.current.value = "";
     postTitleElement.current.value = "";
@@ -35,7 +35,7 @@ const CreatePost = () => {
         body: postBody,
         reactions: reactions,
         userId: userId,
-        tags:  tags.split(" "),
+        tags: tags,
       }),
     })
       .then((res) => res.json())
@@ -120,5 +120,6 @@ const CreatePost = () => {
     </>
   );
 };
+
 
 export default CreatePost;
