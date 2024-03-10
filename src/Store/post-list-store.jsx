@@ -8,7 +8,7 @@ export const PostList = createContext({
 
 const postListReducer = (currPostList, action) => {
   try {
-    let newPostList;
+    let newPostList = currPostList;
     if (action.type === "DELETE_POST") {
       newPostList = currPostList.filter(
         (post) => post.id !== action.payload.postId
